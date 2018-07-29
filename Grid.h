@@ -5,6 +5,7 @@
 #include <QGraphicsLineItem>
 
 class QGraphicsScene;
+class Cell;
 
 class Grid: public QObject
 {
@@ -21,10 +22,14 @@ private:
   QSize size;
   qreal pitch;
   QList<QGraphicsLineItem*> lines;
+  QList<Cell*> cells;
   void constructLines(QGraphicsScene* scene);
   void constructCells(QGraphicsScene* scene);
   void constructOneLine(QGraphicsScene* scene, QLineF line);
   void constructOneCell(QGraphicsScene* scene, QPointF topLeft);
+  Cell* getCellByCoords(int ix, int iy) const;
+  void connectNeighbouringCells();
+  void connectNeighbouringCells(int ix, int iy);
 };
 
 #endif // GRID_H

@@ -10,9 +10,10 @@
 class Cell: public QGraphicsPixmapItem
 {
 public:
+  enum Direction {east=0, north, west, south};
   Cell(const QRectF &rect);
   void setColor(const QColor& color);
-  void addNei(Cell* cell, int dir);
+  void addNeighbour(Cell* cell, Direction dir);
 private:
   QMap<int, Cell*> nei;
 

@@ -17,8 +17,8 @@ void Cell::setColor(const QColor& color){
   setPixmap(p);
 }
 
-void Cell::addNei(Cell* cell, int dir){
-  nei[dir] = cell;
+void Cell::addNeighbour(Cell* cell, Direction dir){
+  nei[int(dir)] = cell;
 }
 
 //void Cell::setPixmap(const QPixmap& pixmap){
