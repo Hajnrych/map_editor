@@ -1,8 +1,11 @@
 #include "SideMenu.h"
 #include <QGridLayout>
 #include <QPushButton>
-#include <IconButton.h>
+#include <TextureButton.h>
 #include <QSignalMapper>
+#include <TextureFactory.h>
+#include <QMap>
+#include <QPixmap>
 
 SideMenu::SideMenu(QWidget *parent): QWidget(parent){
   layout = new QGridLayout();
@@ -11,16 +14,18 @@ SideMenu::SideMenu(QWidget *parent): QWidget(parent){
   createButtons();
 }
 
-void SideMenu::createButton(QString name, int ix, int iy, int brush){
-  QPushButton* btn = new IconButton(name, this);
-  connect(btn, SIGNAL(clicked()), signalMapper, SLOT(map()));
-  signalMapper->setMapping(btn, brush);
-  layout->addWidget(btn, ix, iy);
-}
-
 void SideMenu::createButtons(){
-  createButton("grass", 0, 0, 1);
-  createButton("water", 0, 1, 2);
+  QList<int> colorIds = TextureFactory::getInstance()->getAllColorIds();
+  int i = 0;
+  int nx = 3;
+  foreach (int colorId, colorIds) {
+     QColor color = TextureFactory::getInstance()->getColor(colorId);
+     QPushButton* btn = new TextureButton(color, this);
+     connect(btn, SIGNAL(clicked()), signalMapper, SLOT(map()));
+     signalMapper->setMapping(btn, colorId);
+     layout->addWidget(btn, i / nx, i % nx);
+     i++;
+  }
   connect(signalMapper, SIGNAL(mapped(int)),
           this, SIGNAL(brushChanged(int)));
 }

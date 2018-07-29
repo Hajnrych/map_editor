@@ -28,17 +28,19 @@ SOURCES += \
         MainWindow.cpp \
     Canvas.cpp \
     SideMenu.cpp \
-    IconButton.cpp \
     Cell.cpp \
-    Scene.cpp
+    Scene.cpp \
+    TextureFactory.cpp \
+    TextureButton.cpp
 
 HEADERS += \
         MainWindow.h \
     Canvas.h \
     SideMenu.h \
-    IconButton.h \
     Cell.h \
-    Scene.h
+    Scene.h \
+    TextureFactory.h \
+    TextureButton.h
 
 RESOURCES += \
     res.qrc

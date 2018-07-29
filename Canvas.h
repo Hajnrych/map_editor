@@ -2,7 +2,7 @@
 #define CANVAS_H
 #include <QGraphicsView>
 
-class QGraphicsScene;
+class Scene;
 
 class Canvas: public QGraphicsView
 {
@@ -11,13 +11,13 @@ public:
   explicit Canvas(QWidget *parent = nullptr);
   void createGrid(unsigned nx, unsigned ny, qreal pitch);
 public slots:
-  void setBrush(int brushId);
+  void setBrush(int colorId);
 protected:
   void keyPressEvent(QKeyEvent *event);
   void mousePressEvent(QMouseEvent *event);
   void mouseMoveEvent(QMouseEvent *event);
 private:
-  QGraphicsScene* scene;
+  Scene* scene;
   void createScene(unsigned nx, unsigned ny, qreal pitch);
   void zoomIn();
   void zoomOut();

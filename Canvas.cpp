@@ -71,7 +71,7 @@ void Canvas::mousePressEvent(QMouseEvent *event){
 
 }
 
-void Canvas::setBrush(int brushId){
-  int y=0;
+void Canvas::setBrush(int colorId){
+  scene->setBrush(colorId);
 }
 

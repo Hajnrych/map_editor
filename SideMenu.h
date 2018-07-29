@@ -16,7 +16,6 @@ private:
   QGridLayout* layout;
   QSignalMapper* signalMapper;
   void createButtons();
-  void createButton(QString name, int ix, int iy, int brush);
 };
 
 #endif // SIDEMENU_H
