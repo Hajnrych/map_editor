@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent){
   QWidget* centralWidget = new QWidget(this);
   sideMenu =new SideMenu(centralWidget);
   centralWidgetlayout->addWidget(sideMenu);
-  Grid* grid = new Grid(QSize(100, 100), 64, this);
+  Grid* grid = new Grid(QSize(200, 200), 64, this);
   canvas = new Canvas(grid, centralWidget);
   centralWidgetlayout->addWidget(canvas);
   setCentralWidget(centralWidget);

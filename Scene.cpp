@@ -6,12 +6,12 @@
 
 Scene::Scene(QObject *parent): QGraphicsScene(parent){
   button = Qt::NoButton;
-  brushColor = TextureFactory::getInstance()->getColor(0);
+  brush = TextureFactory::getInstance()->getTexture(0);
   brushRadius = 0;
 }
 
-void Scene::setBrushColor(int colorId){
-  brushColor = TextureFactory::getInstance()->getColor(colorId);
+void Scene::setBrush(int colorId){
+  brush = TextureFactory::getInstance()->getTexture(colorId);
 }
 
 void Scene::setBrushRadius(qreal radius){
@@ -37,9 +37,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent){
         Cell* cell = qgraphicsitem_cast<Cell*>(item);
         if (!cell)
           continue;
-        cell->setColor(brushColor);
-      }
-      //QGraphicsItem *item = itemAt(mouseEvent->scenePos(), QTransform());
-      //emit cellChanged(cell->pos());
+        cell->setBrush(brush);
+    }
   }
 }

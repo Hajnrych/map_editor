@@ -18,7 +18,6 @@ public:
   QRectF getRect() const;
 public slots:
   void setLineVisibility(bool visible);
-  void handleCellChange(QPointF cellPos);
 private:
   QSize size;
   qreal pitch;

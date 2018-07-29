@@ -7,7 +7,7 @@
 #include <Grid.h>
 
 const qreal Canvas::ZOOM_STEP = 1.25;
-const qreal Canvas::MIN_ZOOM = 0.125;
+const qreal Canvas::MIN_ZOOM = 0.125/2;
 const qreal Canvas::MAX_ZOOM = 2;
 
 Canvas::Canvas(Grid* grid, QWidget *parent): QGraphicsView(parent),
@@ -18,7 +18,6 @@ Canvas::Canvas(Grid* grid, QWidget *parent): QGraphicsView(parent),
   scene->setBackgroundBrush(Qt::white);
   setScene(scene);
   grid->construct(scene);
-  connect(scene, SIGNAL(cellChanged(QPointF)), grid, SLOT(handleCellChange(QPointF)));
 }
 
 void Canvas::keyPressEvent(QKeyEvent *event){
@@ -51,7 +50,7 @@ void Canvas::mousePressEvent(QMouseEvent *event){
 }
 
 void Canvas::setBrushColor(int colorId){
-  scene->setBrushColor(colorId);
+  scene->setBrush(colorId);
 }
 
 void Canvas::setBrushRadius(int radius){

@@ -15,12 +15,12 @@ SideMenu::SideMenu(QWidget *parent): QWidget(parent){
 }
 
 void SideMenu::createButtons(){
-  QList<int> colorIds = TextureFactory::getInstance()->getAllColorIds();
+  QList<int> colorIds = TextureFactory::getInstance()->getAllTextureIds();
   int i = 0;
   int nx = 2;
   foreach (int colorId, colorIds) {
-     QColor color = TextureFactory::getInstance()->getColor(colorId);
-     QPushButton* btn = new TextureButton(color, this);
+     QBrush brush = TextureFactory::getInstance()->getTexture(colorId);
+     QPushButton* btn = new TextureButton(brush.color(), this);
      connect(btn, SIGNAL(clicked()), signalMapper, SLOT(map()));
      signalMapper->setMapping(btn, colorId);
      layout->addWidget(btn, i / nx, i % nx);

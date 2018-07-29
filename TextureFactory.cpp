@@ -2,15 +2,20 @@
 #include <ColorUtil.h>
 
 TextureFactory::TextureFactory(){
-  colors[0] = Qt::darkGreen;
-  colors[1] = ColorUtil::mixColors(Qt::darkGreen, Qt::darkRed);
-  colors[2] = Qt::darkCyan;
-  colors[3] = Qt::darkBlue;
-
-  colorStrength.append(colors[0]);
-  colorStrength.append(colors[1]);
-  colorStrength.append(colors[2]);
-  colorStrength.append(colors[3]);
+  textureMap[0] = QBrush(Qt::darkGreen, Qt::SolidPattern);
+  textureMap[1] = QBrush(ColorUtil::mixColors(Qt::darkGreen, Qt::black),
+                         Qt::SolidPattern);
+  textureMap[2] = QBrush(Qt::darkBlue, Qt::SolidPattern);
+  textureMap[3] = QBrush(Qt::darkCyan, Qt::SolidPattern);
+  textureMap[4] = QBrush(ColorUtil::mixColors(Qt::green, Qt::gray),
+                         Qt::SolidPattern);
+  textureMap[5] = QBrush(ColorUtil::mixColors(Qt::green, Qt::darkGreen, 0.25),
+                         Qt::SolidPattern);
+  textureMap[6] = QBrush(ColorUtil::mixColors(Qt::green, Qt::darkGreen, 0.5),
+                         Qt::SolidPattern);
+  textureMap[7] = QBrush(Qt::darkGray, Qt::SolidPattern);
+  textureMap[8] = QBrush(ColorUtil::mixColors(Qt::darkGreen, Qt::darkRed),
+                         Qt::SolidPattern);
 }
 
 TextureFactory* TextureFactory::getInstance(){
@@ -18,18 +23,12 @@ TextureFactory* TextureFactory::getInstance(){
   return instance;
 }
 
-QColor TextureFactory::getColor(int key) const {
-  if (colors.count(key) != 0)
-    return colors[key];
-  return Qt::transparent;
+QBrush TextureFactory::getTexture(int key) const {
+  if (textureMap.count(key) != 0)
+    return textureMap[key];
+  return textureMap[0];
 }
 
-bool TextureFactory::isStronger(QColor left, QColor right) const{
-  int leftId = colorStrength.indexOf(left);
-  int rightId = colorStrength.indexOf(right);
-  return (leftId > rightId);
-}
-
-QList<int> TextureFactory::getAllColorIds() const {
-  return colors.keys();
+QList<int> TextureFactory::getAllTextureIds() const {
+  return textureMap.keys();
 }

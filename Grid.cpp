@@ -28,28 +28,6 @@ void Grid::constructLines(QGraphicsScene* scene){
   }
 }
 
-void Grid::handleCellChange(QPointF pos){
-  int ix = pos.x()/pitch;
-  int iy = pos.y()/pitch;
-  Cell* target = getCellByCoords(ix, iy);
-  if (!target)
-    return;
-  Cell* east = getCellByCoords(ix+1, iy);
-  if (!east)
-    return;
-  Cell* north = getCellByCoords(ix, iy+1);
-  if (!north)
-    return;
-  Cell* west = getCellByCoords(ix-1, iy);
-  if (!west)
-    return;
-  Cell* south = getCellByCoords(ix, iy-1);
-  if (!south)
-    return;
-  target->diffuseEdges(east->getPrimaryColor(), north->getPrimaryColor(),
-                       west->getPrimaryColor(), south->getPrimaryColor());
-}
-
 void Grid::constructCells(QGraphicsScene* scene){
   for (int iy=0; iy<size.height(); iy++){
     for (int ix=0; ix<size.width(); ix++){
