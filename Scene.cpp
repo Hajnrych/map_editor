@@ -6,7 +6,7 @@
 
 Scene::Scene(QObject *parent): QGraphicsScene(parent){
   button = Qt::NoButton;
-  brushColor = Qt::transparent;
+  brushColor = TextureFactory::getInstance()->getColor(0);
 }
 
 void Scene::setBrush(int colorId){
@@ -28,5 +28,6 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent){
       if (!cell)
         return;
       cell->setColor(brushColor);
+      emit cellChanged(cell->pos());
   }
 }

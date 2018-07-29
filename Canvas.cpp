@@ -11,29 +11,14 @@ const qreal Canvas::MIN_ZOOM = 0.125;
 const qreal Canvas::MAX_ZOOM = 2;
 
 Canvas::Canvas(Grid* grid, QWidget *parent): QGraphicsView(parent),
-  grid(grid), scene(0), currentScale(1.0){
+  scene(0), grid(grid), currentScale(1.0){
   scene = new Scene(this);
   scene->setSceneRect(grid->getRect());
   scene->setBackgroundBrush(Qt::white);
   setScene(scene);
   grid->construct(scene);
+  connect(scene, SIGNAL(cellChanged(QPointF)), grid, SLOT(handleCellChange(QPointF)));
 }
-
-
-//void Canvas::createGrid(unsigned nx, unsigned ny, qreal pitch){
-//  createScene(nx, ny, pitch);
-
-//  for (unsigned ix=0; ix<nx; ix++){
-//    for (unsigned iy=0; iy<ny; iy++){
-//      qreal x = ix*pitch;
-//      qreal y = iy*pitch;
-//      Cell* cell = new Cell(QRectF(QPointF(x, y),
-//                                QPointF(x+pitch, y+pitch)));
-//      cell->setZValue(0);
-//      scene->addItem(cell);
-//    }
-//  }
-//}
 
 void Canvas::keyPressEvent(QKeyEvent *event){
   if (event->key() == Qt::Key_Plus)

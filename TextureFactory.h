@@ -9,9 +9,11 @@ public:
   static TextureFactory* getInstance();
   QColor getColor(int key) const;
   QList<int> getAllColorIds() const;
+  QColor getStronger(QColor left, QColor right) const;
 private:
   TextureFactory();
   QMap<int, QColor> colors;
+  QList<QColor> colorStrength;
 };
 
 #endif // TEXTUREFACTORY_H

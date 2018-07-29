@@ -28,39 +28,31 @@ void Grid::constructLines(QGraphicsScene* scene){
   }
 }
 
-void Grid::connectNeighbouringCells(int ix, int iy){
+void Grid::handleCellChange(QPointF pos){
+  int ix = pos.x()/pitch;
+  int iy = pos.y()/pitch;
   Cell* target = getCellByCoords(ix, iy);
   if (!target)
     return;
   Cell* east = getCellByCoords(ix+1, iy);
   if (!east)
     return;
-  target->addNeighbour(east, Cell::east);
   Cell* north = getCellByCoords(ix, iy+1);
   if (!north)
     return;
-  target->addNeighbour(east, Cell::north);
   Cell* west = getCellByCoords(ix-1, iy);
   if (!west)
     return;
-  target->addNeighbour(east, Cell::west);
   Cell* south = getCellByCoords(ix, iy-1);
   if (!south)
     return;
-  target->addNeighbour(east, Cell::south);
-}
-
-void Grid::connectNeighbouringCells(){
-  for (unsigned iy=0; iy<size.height(); iy++){
-    for (unsigned ix=0; ix<size.width(); ix++){
-      connectNeighbouringCells(ix, iy);
-    }
-  }
+  target->diffuseEdges(east->getPrimaryColor(), north->getPrimaryColor(),
+                       west->getPrimaryColor(), south->getPrimaryColor());
 }
 
 void Grid::constructCells(QGraphicsScene* scene){
-  for (unsigned iy=0; iy<size.height(); iy++){
-    for (unsigned ix=0; ix<size.width(); ix++){
+  for (int iy=0; iy<size.height(); iy++){
+    for (int ix=0; ix<size.width(); ix++){
       constructOneCell(scene, QPointF(ix*pitch, iy*pitch));
     }
   }

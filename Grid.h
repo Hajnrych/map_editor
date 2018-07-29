@@ -18,6 +18,7 @@ public:
   QRectF getRect() const;
 public slots:
   void setLineVisibility(bool visible);
+  void handleCellChange(QPointF cellPos);
 private:
   QSize size;
   qreal pitch;
@@ -28,8 +29,6 @@ private:
   void constructOneLine(QGraphicsScene* scene, QLineF line);
   void constructOneCell(QGraphicsScene* scene, QPointF topLeft);
   Cell* getCellByCoords(int ix, int iy) const;
-  void connectNeighbouringCells();
-  void connectNeighbouringCells(int ix, int iy);
 };
 
 #endif // GRID_H

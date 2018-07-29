@@ -6,17 +6,17 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QMap>
+#include <QColor>
 
 class Cell: public QGraphicsPixmapItem
 {
 public:
-  enum Direction {east=0, north, west, south};
   Cell(const QRectF &rect);
   void setColor(const QColor& color);
-  void addNeighbour(Cell* cell, Direction dir);
+  QColor getPrimaryColor() const;
+  void diffuseEdges(QColor east, QColor north, QColor west, QColor south);
 private:
-  QMap<int, Cell*> nei;
-
+  QColor primaryColor;
 };
 
 #endif // CELL_H

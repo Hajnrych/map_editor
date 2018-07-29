@@ -9,6 +9,8 @@ class Scene: public QGraphicsScene
 public:
   explicit Scene(QObject *parent = nullptr);
   void setBrush(int colorId);
+signals:
+  void cellChanged(QPointF);
 protected:
   void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
   void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent);
