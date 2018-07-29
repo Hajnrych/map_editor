@@ -26,8 +26,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         MainWindow.cpp \
-    Canvas.cpp
+    Canvas.cpp \
+    SideMenu.cpp
 
 HEADERS += \
         MainWindow.h \
-    Canvas.h
+    Canvas.h \
+    SideMenu.h

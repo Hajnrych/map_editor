@@ -3,6 +3,7 @@
 #include <QMainWindow>
 
 class Canvas;
+class SideMenu;
 
 class MainWindow: public QMainWindow
 {
@@ -12,6 +13,7 @@ public:
   ~MainWindow();
 private:
   Canvas* canvas;
+  SideMenu* sideMenu;
 };
 
 #endif // MAINWINDOW_H
