@@ -5,6 +5,9 @@
 #include <SideMenu.h>
 #include <QDesktopWidget>
 #include <Grid.h>
+#include <QMenuBar>
+#include <QAction>
+#include <MenuController.h>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent){
   QHBoxLayout* centralWidgetlayout = new QHBoxLayout();
@@ -18,9 +21,13 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent){
   centralWidget->setLayout(centralWidgetlayout);
   connect(sideMenu, SIGNAL(brushChanged(int)),
           canvas, SLOT(setBrush(int)));
+  menuControler = new MenuController(this);
+  connect(menuControler, SIGNAL(gridLineVisibilityChanged(bool)),
+          grid, SLOT(setLineVisibility(bool)));
   resize(QDesktopWidget().availableGeometry(this).size() * 0.5);
-}
-
-MainWindow::~MainWindow(){
 
 }
+
+//void MainWindow::createMenu(){
+
+//}

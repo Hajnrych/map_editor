@@ -54,3 +54,9 @@ qreal Grid::getPitch() const {
 QRectF Grid::getRect() const {
   return QRectF(0, 0, size.width()*pitch, size.height() * pitch);
 }
+
+void Grid::setLineVisibility(bool visible){
+  foreach (QGraphicsLineItem* item, lines) {
+    item->setVisible(visible);
+  }
+}

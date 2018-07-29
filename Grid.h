@@ -15,6 +15,8 @@ public:
   QSize getSize() const;
   qreal getPitch() const;
   QRectF getRect() const;
+public slots:
+  void setLineVisibility(bool visible);
 private:
   QSize size;
   qreal pitch;

@@ -32,7 +32,8 @@ SOURCES += \
     Scene.cpp \
     TextureFactory.cpp \
     TextureButton.cpp \
-    Grid.cpp
+    Grid.cpp \
+    MenuController.cpp
 
 HEADERS += \
         MainWindow.h \
@@ -42,6 +43,7 @@ HEADERS += \
     Scene.h \
     TextureFactory.h \
     TextureButton.h \
-    Grid.h
+    Grid.h \
+    MenuController.h
 
 RESOURCES +=
