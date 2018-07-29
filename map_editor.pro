@@ -42,5 +42,4 @@ HEADERS += \
     TextureFactory.h \
     TextureButton.h
 
-RESOURCES += \
-    res.qrc
+RESOURCES +=
