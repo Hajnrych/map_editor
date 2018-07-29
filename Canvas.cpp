@@ -1,6 +1,7 @@
 #include "Canvas.h"
 #include <qgraphicsscene.h>
 #include <QKeyEvent>
+#include <QMouseEvent>
 
 const qreal Canvas::ZOOM_STEP = 1.25;
 const qreal Canvas::MIN_ZOOM = 0.125;
@@ -48,5 +49,17 @@ void Canvas::zoomOut(){
     return;
   scale(1/ZOOM_STEP, 1/ZOOM_STEP);
   currentScale/= ZOOM_STEP;
+}
+
+void Canvas::mouseMoveEvent(QMouseEvent *event){
+  QGraphicsView::mouseMoveEvent(event);
+}
+
+void Canvas::mousePressEvent(QMouseEvent *event){
+  QGraphicsView::mousePressEvent(event);
+}
+
+void Canvas::setBrush(int brushId){
+  int y=0;
 }
 
