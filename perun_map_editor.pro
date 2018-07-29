@@ -25,7 +25,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        MainWindow.cpp
+        MainWindow.cpp \
+    Canvas.cpp
 
 HEADERS += \
-        MainWindow.h
+        MainWindow.h \
+    Canvas.h
