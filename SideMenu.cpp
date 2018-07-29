@@ -1,7 +1,7 @@
 #include "SideMenu.h"
 #include <QGridLayout>
 #include <QPushButton>
-#include <QIcon>
+#include <IconButton.h>
 
 SideMenu::SideMenu(QWidget *parent): QWidget(parent){
   layout = new QGridLayout();
@@ -19,8 +19,8 @@ void SideMenu::createButtons(){
 //      layout->addWidget(btn, iy, ix);
 //    }
 //  }
-  QPushButton* btn = new QPushButton(QIcon(":/textures/res/grass.png"), "", this);
+  QPushButton* btn = new IconButton("grass", this);
   layout->addWidget(btn, 0, 0);
-  btn = new QPushButton(QIcon(":/textures/res/water.png"), "", this);
+  btn = new IconButton("water", this);
   layout->addWidget(btn, 0, 1);
 }

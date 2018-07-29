@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         MainWindow.cpp \
     Canvas.cpp \
-    SideMenu.cpp
+    SideMenu.cpp \
+    IconButton.cpp
 
 HEADERS += \
         MainWindow.h \
     Canvas.h \
-    SideMenu.h
+    SideMenu.h \
+    IconButton.h
 
 RESOURCES += \
     res.qrc
