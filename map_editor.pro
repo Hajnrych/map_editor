@@ -34,7 +34,8 @@ SOURCES += \
     TextureButton.cpp \
     Grid.cpp \
     MenuController.cpp \
-    ColorUtil.cpp
+    ColorUtil.cpp \
+    AssetLoader.cpp
 
 HEADERS += \
         MainWindow.h \
@@ -46,6 +47,8 @@ HEADERS += \
     TextureButton.h \
     Grid.h \
     MenuController.h \
-    ColorUtil.h
+    ColorUtil.h \
+    AssetLoader.h
 
-RESOURCES +=
+RESOURCES += \
+    res.qrc

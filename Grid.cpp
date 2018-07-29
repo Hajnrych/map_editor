@@ -1,6 +1,7 @@
 #include "Grid.h"
 #include <QGraphicsScene>
 #include <Cell.h>
+#include <ColorUtil.h>
 
 Grid::Grid(QSize size, qreal pitch, QObject *parent):
   QObject(parent), size(size), pitch(pitch){
@@ -71,4 +72,30 @@ void Grid::setLineVisibility(bool visible){
   foreach (QGraphicsLineItem* item, lines) {
     item->setVisible(visible);
   }
+}
+
+void Grid::diffuse(){
+  for (int iy=0; iy<size.height(); iy++){
+    for (int ix=0; ix<size.width(); ix++){
+      diffuse(ix, iy);
+    }
+  }
+}
+
+void Grid::diffuse(int ix, int iy){
+  Cell* source = getCellByCoords(ix, iy);
+  if (!source)
+    return;
+  Cell* east = getCellByCoords(ix-1, iy);
+  if (!east)
+    return;
+  Cell* north = getCellByCoords(ix, iy-1);
+  if (!north)
+    return;
+  Cell* west = getCellByCoords(ix+1, iy);
+  if (!west)
+    return;
+  Cell* south = getCellByCoords(ix, iy+1);
+  if (!south)
+    return;
 }

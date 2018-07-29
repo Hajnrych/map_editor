@@ -17,13 +17,16 @@ public:
 signals:
   void gridLineVisibilityChanged(bool);
   void brushRadiusChanged(int);
+  void diffusionRequested();
 public slots:
   void toggleGridLineVisibility();
 private:
   QMenuBar* menuBar;
   QAction* showGridLinesAction;
+  QAction* diffuseAction;
   QList<QAction*> brushActions;
   void createViewMenu();
+  void createActionMenu();
   bool linesVisible;
   QSignalMapper* brushSignalMapper;
 };

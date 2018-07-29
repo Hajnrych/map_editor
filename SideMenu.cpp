@@ -20,7 +20,7 @@ void SideMenu::createButtons(){
   int nx = 2;
   foreach (int colorId, colorIds) {
      QBrush brush = TextureFactory::getInstance()->getTexture(colorId);
-     QPushButton* btn = new TextureButton(brush.color(), this);
+     QPushButton* btn = new TextureButton(brush, this);
      connect(btn, SIGNAL(clicked()), signalMapper, SLOT(map()));
      signalMapper->setMapping(btn, colorId);
      layout->addWidget(btn, i / nx, i % nx);

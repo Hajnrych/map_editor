@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent){
   QWidget* centralWidget = new QWidget(this);
   sideMenu =new SideMenu(centralWidget);
   centralWidgetlayout->addWidget(sideMenu);
-  Grid* grid = new Grid(QSize(200, 200), 64, this);
+  Grid* grid = new Grid(QSize(200, 200), 32, this);
   canvas = new Canvas(grid, centralWidget);
   centralWidgetlayout->addWidget(canvas);
   setCentralWidget(centralWidget);
@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent){
   menuControler->createEditMenu(grid->getPitch());
   connect(menuControler, SIGNAL(gridLineVisibilityChanged(bool)),
           grid, SLOT(setLineVisibility(bool)));
+  connect(menuControler, SIGNAL(diffusionRequested()),
+          grid, SLOT(diffuse()));
   connect(menuControler, SIGNAL(brushRadiusChanged(int)),
           canvas, SLOT(setBrushRadius(int)));
   resize(QDesktopWidget().availableGeometry(this).size() * 0.5);

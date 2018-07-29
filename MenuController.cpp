@@ -11,6 +11,7 @@ MenuController::MenuController(QMainWindow* mainWin):
   showGridLinesAction(0), linesVisible(true){
   menuBar = mainWin->menuBar();
   createViewMenu();
+  createActionMenu();
   brushSignalMapper = new QSignalMapper();
 }
 
@@ -20,6 +21,14 @@ void MenuController::createViewMenu(){
   connect(showGridLinesAction, SIGNAL(triggered(bool)), this,
           SLOT(toggleGridLineVisibility()));
   viewMenu->addAction(showGridLinesAction);
+}
+
+void MenuController::createActionMenu(){
+  QMenu* actionMenu = menuBar->addMenu("Action");
+  diffuseAction = new QAction("Diffuse edges", this);
+  connect(diffuseAction, SIGNAL(triggered(bool)), this,
+          SIGNAL(diffusionRequested()));
+  actionMenu->addAction(diffuseAction);
 }
 
 void MenuController::createEditMenu(int pitch){

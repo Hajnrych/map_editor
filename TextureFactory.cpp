@@ -1,21 +1,12 @@
 #include "TextureFactory.h"
 #include <ColorUtil.h>
+#include <AssetLoader.h>
 
 TextureFactory::TextureFactory(){
-  textureMap[0] = QBrush(Qt::darkGreen, Qt::SolidPattern);
-  textureMap[1] = QBrush(ColorUtil::mixColors(Qt::darkGreen, Qt::black),
-                         Qt::SolidPattern);
-  textureMap[2] = QBrush(Qt::darkBlue, Qt::SolidPattern);
-  textureMap[3] = QBrush(Qt::darkCyan, Qt::SolidPattern);
-  textureMap[4] = QBrush(ColorUtil::mixColors(Qt::green, Qt::gray),
-                         Qt::SolidPattern);
-  textureMap[5] = QBrush(ColorUtil::mixColors(Qt::green, Qt::darkGreen, 0.25),
-                         Qt::SolidPattern);
-  textureMap[6] = QBrush(ColorUtil::mixColors(Qt::green, Qt::darkGreen, 0.5),
-                         Qt::SolidPattern);
-  textureMap[7] = QBrush(Qt::darkGray, Qt::SolidPattern);
-  textureMap[8] = QBrush(ColorUtil::mixColors(Qt::darkGreen, Qt::darkRed),
-                         Qt::SolidPattern);
+  textureMap[0] = QBrush(AssetLoader::getInstance()->getTexture("grass"));
+  textureMap[1] = QBrush(AssetLoader::getInstance()->getTexture("forest"));
+  textureMap[2] = QBrush(AssetLoader::getInstance()->getTexture("water"));
+  //textureMap[3] = QBrush(AssetLoader::getInstance()->getTexture("swamp"));
 }
 
 TextureFactory* TextureFactory::getInstance(){
