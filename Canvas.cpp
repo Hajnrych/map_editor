@@ -2,6 +2,8 @@
 #include <qgraphicsscene.h>
 #include <QKeyEvent>
 #include <QMouseEvent>
+#include <Cell.h>
+#include <Scene.h>
 
 const qreal Canvas::ZOOM_STEP = 1.25;
 const qreal Canvas::MIN_ZOOM = 0.125;
@@ -11,7 +13,7 @@ Canvas::Canvas(QWidget *parent): QGraphicsView(parent),
   scene(0), currentScale(1.0){}
 
 void Canvas::createScene(unsigned nx, unsigned ny, qreal pitch){
-  scene = new QGraphicsScene(this);
+  scene = new Scene(this);
   scene->setSceneRect(0, 0, nx*pitch, ny*pitch);
   scene->setBackgroundBrush(Qt::white);
   setScene(scene);
@@ -27,6 +29,15 @@ void Canvas::createGrid(unsigned nx, unsigned ny, qreal pitch){
   for (unsigned iy=0; iy<ny; iy++){
     QLineF line(0, iy*pitch, nx*pitch, iy*pitch);
     scene->addLine(line, pen);
+  }
+  for (unsigned ix=0; ix<nx; ix++){
+    for (unsigned iy=0; iy<ny; iy++){
+      qreal x = ix*pitch;
+      qreal y = iy*pitch;
+      Cell* cell = new Cell(QRectF(QPointF(x, y),
+                                QPointF(x+pitch, y+pitch)));
+      scene->addItem(cell);
+    }
   }
 }
 
@@ -57,6 +68,7 @@ void Canvas::mouseMoveEvent(QMouseEvent *event){
 
 void Canvas::mousePressEvent(QMouseEvent *event){
   QGraphicsView::mousePressEvent(event);
+
 }
 
 void Canvas::setBrush(int brushId){
