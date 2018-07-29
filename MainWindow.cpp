@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent){
   centralWidgetlayout->addWidget(canvas);
   setCentralWidget(centralWidget);
   centralWidget->setLayout(centralWidgetlayout);
+  canvas->createGrid(100, 100, 64);
   resize(QDesktopWidget().availableGeometry(this).size() * 0.5);
 }
 

@@ -33,3 +33,6 @@ HEADERS += \
         MainWindow.h \
     Canvas.h \
     SideMenu.h
+
+RESOURCES += \
+    res.qrc
