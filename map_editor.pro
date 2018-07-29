@@ -33,7 +33,8 @@ SOURCES += \
     TextureFactory.cpp \
     TextureButton.cpp \
     Grid.cpp \
-    MenuController.cpp
+    MenuController.cpp \
+    ColorUtil.cpp
 
 HEADERS += \
         MainWindow.h \
@@ -44,6 +45,7 @@ HEADERS += \
     TextureFactory.h \
     TextureButton.h \
     Grid.h \
-    MenuController.h
+    MenuController.h \
+    ColorUtil.h
 
 RESOURCES +=
