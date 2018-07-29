@@ -18,12 +18,10 @@ QColor TextureFactory::getColor(int key) const {
   return Qt::transparent;
 }
 
-QColor TextureFactory::getStronger(QColor left, QColor right) const{
+bool TextureFactory::isStronger(QColor left, QColor right) const{
   int leftId = colorStrength.indexOf(left);
   int rightId = colorStrength.indexOf(right);
-  if (leftId < rightId)
-    return right;
-  return left;
+  return (leftId > rightId);
 }
 
 QList<int> TextureFactory::getAllColorIds() const {

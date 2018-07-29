@@ -18,6 +18,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent){
 }
 
 void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent){
+  Q_UNUSED(mouseEvent)
   button = Qt::NoButton;
 }
 
