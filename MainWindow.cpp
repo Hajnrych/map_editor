@@ -20,10 +20,13 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent){
   setCentralWidget(centralWidget);
   centralWidget->setLayout(centralWidgetlayout);
   connect(sideMenu, SIGNAL(brushChanged(int)),
-          canvas, SLOT(setBrush(int)));
+          canvas, SLOT(setBrushColor(int)));
   menuControler = new MenuController(this);
+  menuControler->createEditMenu(grid->getPitch());
   connect(menuControler, SIGNAL(gridLineVisibilityChanged(bool)),
           grid, SLOT(setLineVisibility(bool)));
+  connect(menuControler, SIGNAL(brushRadiusChanged(int)),
+          canvas, SLOT(setBrushRadius(int)));
   resize(QDesktopWidget().availableGeometry(this).size() * 0.5);
 
 }

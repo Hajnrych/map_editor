@@ -8,7 +8,8 @@ class Scene: public QGraphicsScene
   Q_OBJECT
 public:
   explicit Scene(QObject *parent = nullptr);
-  void setBrush(int colorId);
+  void setBrushColor(int colorId);
+  void setBrushRadius(qreal radius);
 signals:
   void cellChanged(QPointF);
 protected:
@@ -17,6 +18,7 @@ protected:
   void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent);
 private:
   Qt::MouseButton button;
+  qreal brushRadius;
   QColor brushColor;
 };
 

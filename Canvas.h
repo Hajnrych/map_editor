@@ -11,7 +11,8 @@ class Canvas: public QGraphicsView
 public:
   explicit Canvas(Grid* grid, QWidget *parent = nullptr);
 public slots:
-  void setBrush(int colorId);
+  void setBrushColor(int colorId);
+  void setBrushRadius(int radius);
 protected:
   void keyPressEvent(QKeyEvent *event);
   void mousePressEvent(QMouseEvent *event);

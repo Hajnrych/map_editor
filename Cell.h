@@ -17,6 +17,7 @@ public:
   void diffuseEdges(QColor east, QColor north, QColor west, QColor south);
 private:
   QColor primaryColor;
+  void diffuseEast(QImage& img, QColor inputColor);
 };
 
 #endif // CELL_H

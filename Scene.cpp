@@ -7,10 +7,15 @@
 Scene::Scene(QObject *parent): QGraphicsScene(parent){
   button = Qt::NoButton;
   brushColor = TextureFactory::getInstance()->getColor(0);
+  brushRadius = 0;
 }
 
-void Scene::setBrush(int colorId){
+void Scene::setBrushColor(int colorId){
   brushColor = TextureFactory::getInstance()->getColor(colorId);
+}
+
+void Scene::setBrushRadius(qreal radius){
+  this->brushRadius = radius;
 }
 
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent){
@@ -24,11 +29,17 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent){
 
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent){
   if (button & Qt::LeftButton){
-      QGraphicsItem *item = itemAt(mouseEvent->scenePos(), QTransform());
-      Cell* cell = qgraphicsitem_cast<Cell*>(item);
-      if (!cell)
-        return;
-      cell->setColor(brushColor);
-      emit cellChanged(cell->pos());
+      QPointF mPos = mouseEvent->scenePos();
+      QRectF rect(mPos.x() - brushRadius/2,  mPos.y() - brushRadius/2,
+                  brushRadius, brushRadius);
+      QList<QGraphicsItem*> selectedItems = items(rect);
+      foreach (QGraphicsItem* item, selectedItems) {
+        Cell* cell = qgraphicsitem_cast<Cell*>(item);
+        if (!cell)
+          continue;
+        cell->setColor(brushColor);
+      }
+      //QGraphicsItem *item = itemAt(mouseEvent->scenePos(), QTransform());
+      //emit cellChanged(cell->pos());
   }
 }

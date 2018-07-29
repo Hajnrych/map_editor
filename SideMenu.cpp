@@ -17,7 +17,7 @@ SideMenu::SideMenu(QWidget *parent): QWidget(parent){
 void SideMenu::createButtons(){
   QList<int> colorIds = TextureFactory::getInstance()->getAllColorIds();
   int i = 0;
-  int nx = 3;
+  int nx = 2;
   foreach (int colorId, colorIds) {
      QColor color = TextureFactory::getInstance()->getColor(colorId);
      QPushButton* btn = new TextureButton(color, this);

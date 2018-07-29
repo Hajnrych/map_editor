@@ -10,7 +10,7 @@ public:
   static QColor vectorToHsv(const QVector3D& vect);
   static QVector3D rgbToVector(const QColor& color);
   static QColor vectorToRgb(const QVector3D& vect);
-  static QColor mixColors(const QColor& color1, const QColor& color2, double prop);
+  static QColor mixColors(const QColor& color1, const QColor& color2, double prop=0.5);
   static double getRgbDistance(const QColor& color1, const QColor& color2);
 private:
   ColorUtil();

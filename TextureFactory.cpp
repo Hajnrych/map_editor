@@ -1,10 +1,16 @@
 #include "TextureFactory.h"
+#include <ColorUtil.h>
 
 TextureFactory::TextureFactory(){
   colors[0] = Qt::darkGreen;
-  colors[1] = Qt::darkBlue;
+  colors[1] = ColorUtil::mixColors(Qt::darkGreen, Qt::darkRed);
+  colors[2] = Qt::darkCyan;
+  colors[3] = Qt::darkBlue;
+
   colorStrength.append(colors[0]);
   colorStrength.append(colors[1]);
+  colorStrength.append(colors[2]);
+  colorStrength.append(colors[3]);
 }
 
 TextureFactory* TextureFactory::getInstance(){
