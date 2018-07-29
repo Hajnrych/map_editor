@@ -1,9 +1,8 @@
 #include "TextureFactory.h"
 
 TextureFactory::TextureFactory(){
-  colors[0] = Qt::transparent;
+  colors[0] = Qt::darkGreen;
   colors[1] = Qt::darkBlue;
-  colors[2] = Qt::darkGreen;
 }
 
 TextureFactory* TextureFactory::getInstance(){

@@ -1,22 +1,21 @@
 #ifndef CELL_H
 #define CELL_H
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QWidget>
 #include <QStyleOptionGraphicsItem>
 #include <QPainter>
+#include <QPixmap>
+#include <QMap>
 
-class Cell: public QGraphicsRectItem
+class Cell: public QGraphicsPixmapItem
 {
 public:
   Cell(const QRectF &rect);
   void setColor(const QColor& color);
-  //void setPixmap(const QPixmap& pixmap);
-//protected:
-//  void paint(QPainter *painter,
-//             const QStyleOptionGraphicsItem *option,
-//             QWidget *widget = nullptr);
-//private:
-//  QPixmap* pixmap;
+  void addNei(Cell* cell, int dir);
+private:
+  QMap<int, Cell*> nei;
+
 };
 
 #endif // CELL_H

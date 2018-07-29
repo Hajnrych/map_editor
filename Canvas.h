@@ -3,13 +3,13 @@
 #include <QGraphicsView>
 
 class Scene;
+class Grid;
 
 class Canvas: public QGraphicsView
 {
   Q_OBJECT
 public:
-  explicit Canvas(QWidget *parent = nullptr);
-  void createGrid(unsigned nx, unsigned ny, qreal pitch);
+  explicit Canvas(Grid* grid, QWidget *parent = nullptr);
 public slots:
   void setBrush(int colorId);
 protected:
@@ -18,7 +18,7 @@ protected:
   void mouseMoveEvent(QMouseEvent *event);
 private:
   Scene* scene;
-  void createScene(unsigned nx, unsigned ny, qreal pitch);
+  Grid* grid;
   void zoomIn();
   void zoomOut();
   qreal currentScale;

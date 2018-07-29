@@ -31,7 +31,8 @@ SOURCES += \
     Cell.cpp \
     Scene.cpp \
     TextureFactory.cpp \
-    TextureButton.cpp
+    TextureButton.cpp \
+    Grid.cpp
 
 HEADERS += \
         MainWindow.h \
@@ -40,6 +41,7 @@ HEADERS += \
     Cell.h \
     Scene.h \
     TextureFactory.h \
-    TextureButton.h
+    TextureButton.h \
+    Grid.h
 
 RESOURCES +=

@@ -5,13 +5,20 @@
 #include <QGraphicsScene>
 
 Cell::Cell(const QRectF &rect){
-  setRect(rect);
-  setPen(Qt::NoPen);
-  setBrush(Qt::NoBrush);
+  QPixmap pixmap(rect.size().toSize());
+  pixmap.fill(Qt::darkGreen);
+  setPixmap(pixmap);
+  setPos(rect.topLeft());
 }
 
 void Cell::setColor(const QColor& color){
-  setBrush(color);
+  QPixmap p = pixmap();
+  p.fill(color);
+  setPixmap(p);
+}
+
+void Cell::addNei(Cell* cell, int dir){
+  nei[dir] = cell;
 }
 
 //void Cell::setPixmap(const QPixmap& pixmap){

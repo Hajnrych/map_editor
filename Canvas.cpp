@@ -4,42 +4,36 @@
 #include <QMouseEvent>
 #include <Cell.h>
 #include <Scene.h>
+#include <Grid.h>
 
 const qreal Canvas::ZOOM_STEP = 1.25;
 const qreal Canvas::MIN_ZOOM = 0.125;
 const qreal Canvas::MAX_ZOOM = 2;
 
-Canvas::Canvas(QWidget *parent): QGraphicsView(parent),
-  scene(0), currentScale(1.0){}
-
-void Canvas::createScene(unsigned nx, unsigned ny, qreal pitch){
+Canvas::Canvas(Grid* grid, QWidget *parent): QGraphicsView(parent),
+  grid(grid), scene(0), currentScale(1.0){
   scene = new Scene(this);
-  scene->setSceneRect(0, 0, nx*pitch, ny*pitch);
+  scene->setSceneRect(grid->getRect());
   scene->setBackgroundBrush(Qt::white);
   setScene(scene);
+  grid->construct(scene);
 }
 
-void Canvas::createGrid(unsigned nx, unsigned ny, qreal pitch){
-  createScene(nx, ny, pitch);
-  QPen pen(Qt::black, 1, Qt::DashLine);
-  for (unsigned ix=0; ix<nx; ix++){
-    QLineF line(ix*pitch, 0, ix*pitch, ny*pitch);
-    scene->addLine(line, pen);
-  }
-  for (unsigned iy=0; iy<ny; iy++){
-    QLineF line(0, iy*pitch, nx*pitch, iy*pitch);
-    scene->addLine(line, pen);
-  }
-  for (unsigned ix=0; ix<nx; ix++){
-    for (unsigned iy=0; iy<ny; iy++){
-      qreal x = ix*pitch;
-      qreal y = iy*pitch;
-      Cell* cell = new Cell(QRectF(QPointF(x, y),
-                                QPointF(x+pitch, y+pitch)));
-      scene->addItem(cell);
-    }
-  }
-}
+
+//void Canvas::createGrid(unsigned nx, unsigned ny, qreal pitch){
+//  createScene(nx, ny, pitch);
+
+//  for (unsigned ix=0; ix<nx; ix++){
+//    for (unsigned iy=0; iy<ny; iy++){
+//      qreal x = ix*pitch;
+//      qreal y = iy*pitch;
+//      Cell* cell = new Cell(QRectF(QPointF(x, y),
+//                                QPointF(x+pitch, y+pitch)));
+//      cell->setZValue(0);
+//      scene->addItem(cell);
+//    }
+//  }
+//}
 
 void Canvas::keyPressEvent(QKeyEvent *event){
   if (event->key() == Qt::Key_Plus)
