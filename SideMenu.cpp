@@ -17,7 +17,7 @@ SideMenu::SideMenu(QWidget *parent): QWidget(parent){
 void SideMenu::createButtons(TerrainFactory* terrainFactory){
   int nx = 2;
   for (int i=0; i<terrainFactory->size(); i++){
-     QBrush brush = terrainFactory->getTerrain(i)->getDefaultBrush();
+     QBrush brush = terrainFactory->getTerrain(i)->getBrush();
      QPushButton* btn = new TextureButton(brush, this);
      connect(btn, SIGNAL(clicked()), signalMapper, SLOT(map()));
      signalMapper->setMapping(btn, i);

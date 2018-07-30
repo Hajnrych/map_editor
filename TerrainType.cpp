@@ -1,18 +1,19 @@
 #include "TerrainType.h"
 
-TerrainType::TerrainType(const QPixmap& pixmap){
-  pixmaps.append(pixmap);
+TerrainType::TerrainType(const QPixmap& brushPixmap): brushPixmap(brushPixmap){}
+
+void TerrainType::appendNautrePixMap(const QPixmap& pixmap){
+  naturePixmaps.append(pixmap);
 }
 
-TerrainType* TerrainType::append(const QPixmap& pixmap){
-  pixmaps.append(pixmap);
-  return this;
+QBrush TerrainType::getBrush() const {
+  return QBrush(brushPixmap);
 }
 
-QBrush TerrainType::getDefaultBrush() const {
-  return QBrush(pixmaps[0]);
+QPixmap TerrainType::getRandomNaturePixMap() const {
+  return naturePixmaps[qrand() % naturePixmaps.size()];
 }
 
-QBrush TerrainType::getRandomBrush() const {
-  return QBrush(pixmaps[qrand() % pixmaps.size()]);
+bool TerrainType::hasNaturePixMap() const {
+  return naturePixmaps.size() > 0;
 }

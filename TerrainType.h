@@ -5,12 +5,14 @@
 class TerrainType
 {
 public:
-  explicit TerrainType(const QPixmap& pixmap);
-  TerrainType* append(const QPixmap& pixmap);
-  QBrush getDefaultBrush() const;
-  QBrush getRandomBrush() const;
+  explicit TerrainType(const QPixmap& brushPixmap);
+  void appendNautrePixMap(const QPixmap& pixmap);
+  QBrush getBrush() const;
+  QPixmap getRandomNaturePixMap() const;
+  bool hasNaturePixMap() const;
 private:
-  QList<QPixmap> pixmaps;
+  QPixmap brushPixmap;
+  QList<QPixmap> naturePixmaps;
 };
 
 #endif // TERRAINTYPE_H

@@ -8,6 +8,7 @@ AssetLoader::AssetLoader(){
   loadTexture("desert");
   loadTexture("dirt");
   loadTexture("rocky");
+  loadTexture("road");
   loadTree(1);
   loadTree(2);
   loadTree(3);

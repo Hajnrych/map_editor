@@ -3,13 +3,18 @@
 #include <AssetLoader.h>
 
 TerrainFactory::TerrainFactory(qreal pitch, QObject *parent): QObject(parent),
-  brushRadius(1), currentIndex(0){
+  brushRadius(1), currentIndex(0), pitch(pitch){
   types.append(new TerrainType(AssetLoader::getInstance()->getTexture("grass")));
-  types.append(new TerrainType(AssetLoader::getInstance()->getTexture("forest")));
+  TerrainType* forest = new TerrainType(AssetLoader::getInstance()->getTexture("forest"));
+  forest->appendNautrePixMap(AssetLoader::getInstance()->getTree(1).scaled(pitch, pitch));
+  forest->appendNautrePixMap(AssetLoader::getInstance()->getTree(2).scaled(pitch, pitch));
+  forest->appendNautrePixMap(AssetLoader::getInstance()->getTree(3).scaled(pitch, pitch));
+  types.append(forest);
   types.append(new TerrainType(AssetLoader::getInstance()->getTexture("rocky")));
   types.append(new TerrainType(AssetLoader::getInstance()->getTexture("dirt")));
   types.append(new TerrainType(AssetLoader::getInstance()->getTexture("swamp")));
   types.append(new TerrainType(AssetLoader::getInstance()->getTexture("desert")));
+  types.append(new TerrainType(AssetLoader::getInstance()->getTexture("road")));
   //QSize size(pitch, pitch);
   //types[1]->append(AssetLoader::getInstance()->getTree(1).scaled(size));
   //types[1]->append(AssetLoader::getInstance()->getTree(2).scaled(size));
@@ -43,4 +48,8 @@ qreal TerrainFactory::getBrushRadius() const {
 
 void TerrainFactory::setBrushRadius(int radius){
   brushRadius = radius;
+}
+
+qreal TerrainFactory::getPitch() const {
+  return pitch;
 }

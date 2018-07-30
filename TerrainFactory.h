@@ -15,6 +15,7 @@ public:
   TerrainType* getActiveTerrain() const;
   TerrainType* getDefaultTerrain() const;
   qreal getBrushRadius() const;
+  qreal getPitch() const;
 public slots:
   void setType(int typeId);
   void setBrushRadius(int radius);
@@ -22,6 +23,7 @@ private:
   QList<TerrainType*> types;
   int currentIndex;
   qreal brushRadius;
+  qreal pitch;
 };
 
 #endif // TERRAINFACTORY_H

@@ -4,6 +4,7 @@
 #include <QCursor>
 #include <TerrainFactory.h>
 #include <TerrainType.h>
+#include <NatureSprite.h>
 
 Scene::Scene(TerrainFactory* terrainFactory,
              QObject *parent): QGraphicsScene(parent),
@@ -37,6 +38,18 @@ void Scene::drawTerrain(QPointF mPos){
     Cell* cell = qgraphicsitem_cast<Cell*>(item);
     if (!cell)
       continue;
-    cell->setBrush(terrainFactory->getActiveTerrain()->getRandomBrush());
-}
+    QList<QGraphicsItem*> cellChildren = cell->childItems();
+    foreach (QGraphicsItem* ch, cellChildren) {
+      removeItem(ch);
+    }
+    TerrainType* terrainType = terrainFactory->getActiveTerrain();
+    cell->setBrush(terrainType->getBrush());
+    if (terrainType->hasNaturePixMap()){
+      QPixmap pm = terrainType->getRandomNaturePixMap();
+      NatureSprite* s = new NatureSprite(pm, cell);
+      addItem(s);
+      s->setPos(cell->boundingRect().topLeft());
+      s->setZValue(2);
+    }
+  }
 }

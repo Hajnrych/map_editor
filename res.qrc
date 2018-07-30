@@ -10,5 +10,6 @@
         <file>desert.png</file>
         <file>dirt.png</file>
         <file>rocky.png</file>
+        <file>road.png</file>
     </qresource>
 </RCC>

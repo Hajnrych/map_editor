@@ -36,7 +36,8 @@ SOURCES += \
     ColorUtil.cpp \
     AssetLoader.cpp \
     TerrainFactory.cpp \
-    TerrainType.cpp
+    TerrainType.cpp \
+    NatureSprite.cpp
 
 HEADERS += \
         MainWindow.h \
@@ -50,7 +51,8 @@ HEADERS += \
     ColorUtil.h \
     AssetLoader.h \
     TerrainFactory.h \
-    TerrainType.h
+    TerrainType.h \
+    NatureSprite.h
 
 RESOURCES += \
     res.qrc

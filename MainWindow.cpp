@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent){
   centralWidget->setLayout(centralWidgetlayout);
   connect(sideMenu, SIGNAL(brushChanged(int)),
           terrainFactory, SLOT(setType(int)));
-  grid->setCellBrushForAllCells(terrainFactory->getDefaultTerrain()->getDefaultBrush());
+  grid->setCellBrushForAllCells(terrainFactory->getDefaultTerrain()->getBrush());
   menuControler = new MenuController(this);
   menuControler->createEditMenu(grid->getPitch());
   connect(menuControler, SIGNAL(gridLineVisibilityChanged(bool)),
