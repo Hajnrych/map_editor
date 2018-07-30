@@ -11,7 +11,7 @@ MenuController::MenuController(QMainWindow* mainWin):
   showGridLinesAction(0), linesVisible(true){
   menuBar = mainWin->menuBar();
   createViewMenu();
-  createActionMenu();
+  //createActionMenu();
   brushSignalMapper = new QSignalMapper();
 }
 
@@ -23,18 +23,18 @@ void MenuController::createViewMenu(){
   viewMenu->addAction(showGridLinesAction);
 }
 
-void MenuController::createActionMenu(){
-  QMenu* actionMenu = menuBar->addMenu("Action");
-  diffuseAction = new QAction("Diffuse edges", this);
-  connect(diffuseAction, SIGNAL(triggered(bool)), this,
-          SIGNAL(diffusionRequested()));
-  actionMenu->addAction(diffuseAction);
-}
+//void MenuController::createActionMenu(){
+//  QMenu* actionMenu = menuBar->addMenu("Action");
+//  diffuseAction = new QAction("Diffuse edges", this);
+//  connect(diffuseAction, SIGNAL(triggered(bool)), this,
+//          SIGNAL(diffusionRequested()));
+//  actionMenu->addAction(diffuseAction);
+//}
 
 void MenuController::createEditMenu(int pitch){
   QMenu* viewMenu = menuBar->addMenu(tr("&Edit"));
   QList<int> brushSizes;
-  brushSizes << pitch/2 << 2 * pitch << 8 * pitch;
+  brushSizes << pitch/2 << 2 * pitch << 4 * pitch << 8 * pitch << 16 * pitch;
   foreach (int brushSize, brushSizes) {
     QAction* brushAction = new QAction(
           QString("&Activate brush size %1").arg(2*brushSize/(pitch)), this);

@@ -1,25 +1,21 @@
 #include "Scene.h"
 #include <QGraphicsSceneMouseEvent>
 #include <Cell.h>
-#include <TextureFactory.h>
 #include <QCursor>
+#include <TerrainFactory.h>
+#include <TerrainType.h>
 
-Scene::Scene(QObject *parent): QGraphicsScene(parent){
+Scene::Scene(TerrainFactory* terrainFactory,
+             QObject *parent): QGraphicsScene(parent),
+             terrainFactory(terrainFactory){
   button = Qt::NoButton;
-  brush = TextureFactory::getInstance()->getTexture(0);
-  brushRadius = 0;
-}
-
-void Scene::setBrush(int colorId){
-  brush = TextureFactory::getInstance()->getTexture(colorId);
-}
-
-void Scene::setBrushRadius(qreal radius){
-  this->brushRadius = radius;
 }
 
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent){
   button = mouseEvent->button();
+  if (button & Qt::LeftButton){
+     drawTerrain(mouseEvent->scenePos());
+  }
 }
 
 void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent){
@@ -29,15 +25,18 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent){
 
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent){
   if (button & Qt::LeftButton){
-      QPointF mPos = mouseEvent->scenePos();
-      QRectF rect(mPos.x() - brushRadius/2,  mPos.y() - brushRadius/2,
-                  brushRadius, brushRadius);
-      QList<QGraphicsItem*> selectedItems = items(rect);
-      foreach (QGraphicsItem* item, selectedItems) {
-        Cell* cell = qgraphicsitem_cast<Cell*>(item);
-        if (!cell)
-          continue;
-        cell->setBrush(brush);
-    }
+     drawTerrain(mouseEvent->scenePos());
   }
+}
+
+void Scene::drawTerrain(QPointF mPos){
+  qreal r = terrainFactory->getBrushRadius();
+  QRectF rect(mPos.x() - r/2,  mPos.y() - r/2, r, r);
+  QList<QGraphicsItem*> selectedItems = items(rect);
+  foreach (QGraphicsItem* item, selectedItems) {
+    Cell* cell = qgraphicsitem_cast<Cell*>(item);
+    if (!cell)
+      continue;
+    cell->setBrush(terrainFactory->getActiveTerrain()->getRandomBrush());
+}
 }

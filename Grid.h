@@ -16,6 +16,7 @@ public:
   QSize getSize() const;
   qreal getPitch() const;
   QRectF getRect() const;
+  void setCellBrushForAllCells(QBrush brush);
 public slots:
   void setLineVisibility(bool visible);
   void diffuse();

@@ -23,10 +23,10 @@ public slots:
 private:
   QMenuBar* menuBar;
   QAction* showGridLinesAction;
-  QAction* diffuseAction;
+  //QAction* diffuseAction;
   QList<QAction*> brushActions;
   void createViewMenu();
-  void createActionMenu();
+  //void createActionMenu();
   bool linesVisible;
   QSignalMapper* brushSignalMapper;
 };

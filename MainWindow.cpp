@@ -8,27 +8,32 @@
 #include <QMenuBar>
 #include <QAction>
 #include <MenuController.h>
+#include <TerrainFactory.h>
+#include <TerrainType.h>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent){
   QHBoxLayout* centralWidgetlayout = new QHBoxLayout();
   QWidget* centralWidget = new QWidget(this);
-  sideMenu =new SideMenu(centralWidget);
-  centralWidgetlayout->addWidget(sideMenu);
   Grid* grid = new Grid(QSize(200, 200), 32, this);
-  canvas = new Canvas(grid, centralWidget);
+  terrainFactory = new TerrainFactory(grid->getPitch(), this);
+  sideMenu =new SideMenu(centralWidget);
+  sideMenu->createButtons(terrainFactory);
+  centralWidgetlayout->addWidget(sideMenu);
+  canvas = new Canvas(terrainFactory, grid, centralWidget);
   centralWidgetlayout->addWidget(canvas);
   setCentralWidget(centralWidget);
   centralWidget->setLayout(centralWidgetlayout);
   connect(sideMenu, SIGNAL(brushChanged(int)),
-          canvas, SLOT(setBrushColor(int)));
+          terrainFactory, SLOT(setType(int)));
+  grid->setCellBrushForAllCells(terrainFactory->getDefaultTerrain()->getDefaultBrush());
   menuControler = new MenuController(this);
   menuControler->createEditMenu(grid->getPitch());
   connect(menuControler, SIGNAL(gridLineVisibilityChanged(bool)),
           grid, SLOT(setLineVisibility(bool)));
-  connect(menuControler, SIGNAL(diffusionRequested()),
-          grid, SLOT(diffuse()));
+//  connect(menuControler, SIGNAL(diffusionRequested()),
+//          grid, SLOT(diffuse()));
   connect(menuControler, SIGNAL(brushRadiusChanged(int)),
-          canvas, SLOT(setBrushRadius(int)));
+          terrainFactory, SLOT(setBrushRadius(int)));
   resize(QDesktopWidget().availableGeometry(this).size() * 0.5);
 
 }

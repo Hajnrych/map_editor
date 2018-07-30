@@ -30,12 +30,13 @@ SOURCES += \
     SideMenu.cpp \
     Cell.cpp \
     Scene.cpp \
-    TextureFactory.cpp \
     TextureButton.cpp \
     Grid.cpp \
     MenuController.cpp \
     ColorUtil.cpp \
-    AssetLoader.cpp
+    AssetLoader.cpp \
+    TerrainFactory.cpp \
+    TerrainType.cpp
 
 HEADERS += \
         MainWindow.h \
@@ -43,12 +44,13 @@ HEADERS += \
     SideMenu.h \
     Cell.h \
     Scene.h \
-    TextureFactory.h \
     TextureButton.h \
     Grid.h \
     MenuController.h \
     ColorUtil.h \
-    AssetLoader.h
+    AssetLoader.h \
+    TerrainFactory.h \
+    TerrainType.h
 
 RESOURCES += \
     res.qrc

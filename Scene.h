@@ -3,21 +3,21 @@
 #include <QGraphicsScene>
 #include <QPixmap>
 
+class TerrainFactory;
+
 class Scene: public QGraphicsScene
 {
   Q_OBJECT
 public:
-  explicit Scene(QObject *parent = nullptr);
-  void setBrush(int colorId);
-  void setBrushRadius(qreal radius);
+  explicit Scene(TerrainFactory* terrainFactory, QObject *parent = nullptr);
 protected:
   void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
   void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent);
   void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent);
 private:
   Qt::MouseButton button;
-  qreal brushRadius;
-  QBrush brush;
+  TerrainFactory* terrainFactory;
+  void drawTerrain(QPointF mPos);
 };
 
 #endif // SCENE_H

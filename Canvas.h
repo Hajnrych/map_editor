@@ -4,15 +4,13 @@
 
 class Scene;
 class Grid;
+class TerrainFactory;
 
 class Canvas: public QGraphicsView
 {
   Q_OBJECT
 public:
-  explicit Canvas(Grid* grid, QWidget *parent = nullptr);
-public slots:
-  void setBrushColor(int colorId);
-  void setBrushRadius(int radius);
+  explicit Canvas(TerrainFactory* tf, Grid* grid, QWidget *parent = nullptr);
 protected:
   void keyPressEvent(QKeyEvent *event);
   void mousePressEvent(QMouseEvent *event);

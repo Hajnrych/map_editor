@@ -10,10 +10,9 @@ const qreal Canvas::ZOOM_STEP = 1.25;
 const qreal Canvas::MIN_ZOOM = 0.125/2;
 const qreal Canvas::MAX_ZOOM = 2;
 
-Canvas::Canvas(Grid* grid, QWidget *parent): QGraphicsView(parent),
+Canvas::Canvas(TerrainFactory* tf, Grid* grid, QWidget *parent): QGraphicsView(parent),
   scene(0), grid(grid), currentScale(1.0){
-  scene = new Scene(this);
-  scene->setBrushRadius(grid->getPitch()/2);
+  scene = new Scene(tf, this);
   scene->setSceneRect(grid->getRect());
   scene->setBackgroundBrush(Qt::white);
   setScene(scene);
@@ -47,13 +46,5 @@ void Canvas::mouseMoveEvent(QMouseEvent *event){
 
 void Canvas::mousePressEvent(QMouseEvent *event){
   QGraphicsView::mousePressEvent(event);
-}
-
-void Canvas::setBrushColor(int colorId){
-  scene->setBrush(colorId);
-}
-
-void Canvas::setBrushRadius(int radius){
-  scene->setBrushRadius(radius);
 }
 

@@ -3,28 +3,25 @@
 #include <QPushButton>
 #include <TextureButton.h>
 #include <QSignalMapper>
-#include <TextureFactory.h>
 #include <QMap>
 #include <QPixmap>
+#include <TerrainFactory.h>
+#include <TerrainType.h>
 
 SideMenu::SideMenu(QWidget *parent): QWidget(parent){
   layout = new QGridLayout();
   setLayout(layout);
   signalMapper = new QSignalMapper(this);
-  createButtons();
 }
 
-void SideMenu::createButtons(){
-  QList<int> colorIds = TextureFactory::getInstance()->getAllTextureIds();
-  int i = 0;
+void SideMenu::createButtons(TerrainFactory* terrainFactory){
   int nx = 2;
-  foreach (int colorId, colorIds) {
-     QBrush brush = TextureFactory::getInstance()->getTexture(colorId);
+  for (int i=0; i<terrainFactory->size(); i++){
+     QBrush brush = terrainFactory->getTerrain(i)->getDefaultBrush();
      QPushButton* btn = new TextureButton(brush, this);
      connect(btn, SIGNAL(clicked()), signalMapper, SLOT(map()));
-     signalMapper->setMapping(btn, colorId);
+     signalMapper->setMapping(btn, i);
      layout->addWidget(btn, i / nx, i % nx);
-     i++;
   }
   connect(signalMapper, SIGNAL(mapped(int)),
           this, SIGNAL(brushChanged(int)));

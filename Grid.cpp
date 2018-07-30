@@ -82,6 +82,12 @@ void Grid::diffuse(){
   }
 }
 
+void Grid::setCellBrushForAllCells(QBrush brush){
+  foreach (Cell* cell, cells) {
+     cell->setBrush(brush);
+  }
+}
+
 void Grid::diffuse(int ix, int iy){
   Cell* source = getCellByCoords(ix, iy);
   if (!source)

@@ -5,6 +5,7 @@
 class Canvas;
 class SideMenu;
 class MenuController;
+class TerrainFactory;
 
 class MainWindow: public QMainWindow
 {
@@ -16,6 +17,7 @@ private:
   Canvas* canvas;
   SideMenu* sideMenu;
   MenuController* menuControler;
+  TerrainFactory* terrainFactory;
 };
 
 #endif // MAINWINDOW_H

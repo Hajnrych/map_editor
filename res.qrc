@@ -4,5 +4,11 @@
         <file>forest.png</file>
         <file>water.png</file>
         <file>swamp.png</file>
+        <file>tree1.png</file>
+        <file>tree2.png</file>
+        <file>tree3.png</file>
+        <file>desert.png</file>
+        <file>dirt.png</file>
+        <file>rocky.png</file>
     </qresource>
 </RCC>
