@@ -44,12 +44,12 @@ void Scene::drawTerrain(QPointF mPos){
     }
     TerrainType* terrainType = terrainFactory->getActiveTerrain();
     cell->setBrush(terrainType->getBrush());
-    if (terrainType->hasNaturePixMap()){
-      QPixmap pm = terrainType->getRandomNaturePixMap();
-      NatureSprite* s = new NatureSprite(pm, cell);
-      addItem(s);
-      s->setPos(cell->boundingRect().topLeft());
-      s->setZValue(2);
-    }
+//    if (terrainType->hasNaturePixMap()){
+//      QPixmap pm = terrainType->getRandomNaturePixMap();
+//      NatureSprite* s = new NatureSprite(pm, cell);
+//      addItem(s);
+//      s->setPos(cell->boundingRect().topLeft());
+//      s->setZValue(2);
+//    }
   }
 }

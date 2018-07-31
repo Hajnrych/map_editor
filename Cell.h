@@ -8,10 +8,10 @@
 #include <QMap>
 #include <QColor>
 
-class Cell: public QGraphicsRectItem
+class Cell: public QGraphicsPolygonItem
 {
 public:
-  Cell(const QRectF &rect);
+  Cell(const QPointF &pos, qreal radius);
 };
 
 #endif // CELL_H

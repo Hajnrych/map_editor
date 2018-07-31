@@ -7,7 +7,7 @@
 #include <Grid.h>
 
 const qreal Canvas::ZOOM_STEP = 1.25;
-const qreal Canvas::MIN_ZOOM = 0.125/2;
+const qreal Canvas::MIN_ZOOM = 0.125/4;
 const qreal Canvas::MAX_ZOOM = 2;
 
 Canvas::Canvas(TerrainFactory* tf, Grid* grid, QWidget *parent): QGraphicsView(parent),
@@ -17,6 +17,7 @@ Canvas::Canvas(TerrainFactory* tf, Grid* grid, QWidget *parent): QGraphicsView(p
   scene->setBackgroundBrush(Qt::white);
   setScene(scene);
   grid->construct(scene);
+  zoomOut();
 }
 
 void Canvas::keyPressEvent(QKeyEvent *event){

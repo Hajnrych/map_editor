@@ -14,7 +14,7 @@
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent){
   QHBoxLayout* centralWidgetlayout = new QHBoxLayout();
   QWidget* centralWidget = new QWidget(this);
-  Grid* grid = new Grid(QSize(200, 200), 32, this);
+  Grid* grid = new Grid(200, 64, this);
   terrainFactory = new TerrainFactory(grid->getPitch(), this);
   sideMenu =new SideMenu(centralWidget);
   sideMenu->createButtons(terrainFactory);
